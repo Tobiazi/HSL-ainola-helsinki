@@ -1,0 +1,75 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: Arial, sans-serif;
+    background: #000;
+    color: #fff;
+    padding: 20px;
+    font-size: 14px;
+}
+h1 {
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+.layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+.main-content {
+    flex: 2;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.stops-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-start;
+}
+.route-group {
+    background: #222;
+    padding: 15px;
+    border-left: 4px solid #0066cc;
+    flex: 1;
+    min-width: 300px;
+}
+.departure {
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+}
+.departure:last-child { border-bottom: none; }
+.time {
+    font-weight: bold;
+    color: #4ade80;
+    min-width: 80px;
+    font-size: 0.9em;
+}
+.dest {
+    flex: 1;
+    margin-left: 15px;
+    font-size: 0.9em;
+}
+.delay {
+    font-size: 11px;
+    color: #999;
+}
+.delay.late { color: #fbb7b7; }
+.delay.early { color: #b7e6c3; }
+.error {
+    color: #f87171;
+    padding: 20px;
+    font-size: 0.9em;
+}
+.loading {
+    color: #999;
+    padding: 20px;
+    font-size: 0.9em;
+}
+.status {
+    font-size: 11px;
+    color: #666;
+    margin-top: 10px;
+}
