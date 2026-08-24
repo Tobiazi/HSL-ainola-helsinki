@@ -1,75 +1,158 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ============================================================
+   HSL Display – stylesheet
+   ============================================================ */
+
+:root {
+    /* Colors */
+    --bg: #0b0e14;
+    --surface: #151a23;
+    --border: #232a36;
+    --text: #e8ebf0;
+    --text-muted: #8a93a3;
+    --accent: #007ac9;
+    --on-time: #3fd97f;
+    --late: #ff8c8c;
+    --early: #9fe6bd;
+    --danger: #ff6b6b;
+
+    /* Typography */
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace;
+
+    --radius: 12px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------- Page ---------- */
+
 body {
-    font-family: Arial, sans-serif;
-    background: #000;
-    color: #fff;
-    padding: 20px;
-    font-size: 14px;
+    min-height: 100vh;
+    padding: 32px clamp(16px, 4vw, 48px);
+    background:
+        radial-gradient(1200px 500px at 70% -10%, rgba(0, 122, 201, 0.15), transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
 }
+
+/* ---------- Clock ---------- */
+
 h1 {
-    margin-bottom: 10px;
-    font-size: 2em;
+    font-family: var(--font-mono);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 24px;
 }
-.layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-.main-content {
-    flex: 2;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-}
+
+/* ---------- Stop cards ---------- */
+
 .stops-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
     align-items: flex-start;
+    gap: 20px;
 }
+
 .route-group {
-    background: #222;
-    padding: 15px;
-    border-left: 4px solid #0066cc;
-    flex: 1;
-    min-width: 300px;
+    flex: 1 1 340px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 20px 8px;
 }
+
+.route-group strong {
+    display: block;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
+    border-bottom: 2px solid var(--accent);
+}
+
+/* ---------- Departure rows ---------- */
+
 .departure {
-    padding: 8px 0;
-    border-bottom: 1px solid #333;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto 1fr auto;
+    gap: 14px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
 }
-.departure:last-child { border-bottom: none; }
+
+.departure:last-child {
+    border-bottom: none;
+}
+
 .time {
-    font-weight: bold;
-    color: #4ade80;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--on-time);
     min-width: 80px;
-    font-size: 0.9em;
 }
+
+.route {
+    display: inline-block;
+    min-width: 2.6em;
+    padding: 1px 8px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+}
+
 .dest {
-    flex: 1;
-    margin-left: 15px;
-    font-size: 0.9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text);
 }
+
 .delay {
+    justify-self: end;
     font-size: 11px;
-    color: #999;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
 }
-.delay.late { color: #fbb7b7; }
-.delay.early { color: #b7e6c3; }
-.error {
-    color: #f87171;
-    padding: 20px;
-    font-size: 0.9em;
+
+.delay.late {
+    color: var(--late);
 }
-.loading {
-    color: #999;
-    padding: 20px;
-    font-size: 0.9em;
+
+.delay.early {
+    color: var(--early);
 }
+
+/* ---------- Status & messages ---------- */
+
 .status {
+    margin-top: 20px;
     font-size: 11px;
-    color: #666;
-    margin-top: 10px;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+}
+
+.error,
+.loading {
+    padding: 24px 0;
+    font-size: 0.95rem;
+}
+
+.error {
+    color: var(--danger);
+}
+
+.loading {
+    color: var(--text-muted);
 }
