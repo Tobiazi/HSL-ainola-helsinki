@@ -66,9 +66,7 @@ async function queryStopDepartureTimes(stopId) {
 function sortFormatTimes(lists) {
     const mergedList = [];
     for (const lst of lists) {
-        for (const group of lst) {
-            mergedList.push(...group);
-        }
+        mergedList.push(...lst);
     }
 
     const nowSec = getSecondsFromMidnight();
@@ -147,7 +145,8 @@ async function updateDisplay() {
 
                 html += `<div class="departure">
                     <span class="time" data-departure-sec="${sec}">${time}</span>
-                    <span class="dest">${escapeHtml(route)} &rarr; ${escapeHtml(dest)}</span>
+                    <span class="route">${escapeHtml(route)}</span>
+                    <span class="dest">${escapeHtml(dest)}</span>
                     <span class="delay ${depDelayClass}">${depDelayDisplay}</span>
                 </div>`;
             });
